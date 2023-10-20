@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block title_block%}
+<title>Vehicle list</title>
+{%endblock%}
+
+
+{%block body_block%}
+{%if messages%}
+       {%for mes in messages%}  
+            {{mes}}
+        {% endfor %}
+{% endif %}
+
+<div class="container">
+    <h1 class="text-center">VEHICLES LIST</h1>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 mt-4">
+            <table class="table table-striped">
+                <tr>
+                    <th>Make</th>
+                    <th>Address</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                {% for veh in vehicles%}
+                <tr>
+                    <td>{{veh.make}}</td>
+                    <td>{{veh.address}}</td>
+                    <td>{{veh.price}}</td>
+                    <td><a href="{% url 'veh-detail' veh.id%}" class="ms-2"><i class="fa-sharp fa-solid fa-eye text-success "></i></a>
+                        <a href="{%url 'veh-change' veh.id%}" class="ms-2"><i class="fa-solid fa-pen text-info"></i></a>
+                        <a href="{%url 'veh-delete' veh.id%}" class="ms-2"><i class="fa-sharp fa-solid fa-trash text-danger"></i></a></td>
+                </tr>{% endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}

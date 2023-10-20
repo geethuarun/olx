@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{%block title_block%}
+<title>Index</title>
+{%endblock%}
+
+{%block body_block%}
+{{request.user}}
+<div class="container">
+    <div class="row"
+    ><div class="col-3"></div>
+    <div class="col-6">
+        <h1 class="text-center mb-3">Vehicles</h1>
+        <form action="" method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button class="btn btn-primary btn-lg mb-3" type="submit">ADD</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+<div class="row">
+<div class="col-3"></div>
+<div class="col-6">
+    {%if vehicles%}
+      {%for veh in vehicles%}
+    
+          
+          <div class="bg-info text-dark border rounded-pill mb-3 p-3">
+            {{veh.make}}
+            <a href="{%url 'veh-detail' veh.id%}" class="ms-2 mx-auto" ><i class="fa-regular fa-eye fa-beat text-success"></i></a>
+                        <a href="{%url 'veh-delete' veh.id%}" class="ms-2 mx-auto" ><i class="fa-solid fa-trash text-danger"></i></a>
+                        <a href="{%url 'veh-change' veh.id%}" class="ms-2 mx-auto" ><i class="fa-regular fa-pen-to-square text-warning"></i></a>
+            <!-- <a href=""></a>
+            <a href="" class="">Edit</a>
+            <a href="" class="">Delete</a> -->
+          </div>
+    
+      {%endfor%}
+    {%endif%}
+</div>
+<div class="col-3"></div></div>
+</div>
+
+{%endblock%}
